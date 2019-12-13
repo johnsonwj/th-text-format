@@ -1,0 +1,26 @@
+cabal-version:        2.4
+name:                 th-text-format
+version:              0.1.0.0
+-- synopsis:
+-- description:
+homepage:             https://github.com/johnsonwj/th-text-format#readme
+license:              GPL-3.0-or-later
+license-file:         LICENSE
+author:               Will Johnson
+maintainer:           maintainer@willj.dev
+copyright:            2019 Will Johnson
+category:             Text
+build-type:           Simple
+extra-source-files:   README.md
+
+common build-opts
+  default-language:   Haskell2010
+  default-extensions: TemplateHaskellQuotes
+  ghc-options:        -Wall -Wcompat -Wincomplete-record-updates -Wincomplete-uni-patterns -Wredundant-constraints -O2 -flate-specialise -fspecialise-aggressively
+
+library
+  import:               build-opts
+  hs-source-dirs:       src
+  build-depends:        base, text, megaparsec, parser-combinators
+  exposed-modules:      Text.Format
+
