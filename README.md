@@ -23,6 +23,8 @@ Things to note:
 * Dictionary-style parameters from Python have access to names bound at the point of the quote expression.
 * C-style format strings have an obvious way of counting parameters (one per unescaped '%') but Python format strings could have fewer than the number of format specifiers (for instance, if two specifiers appear with the same index; or if all of the specifiers refer to bound names).
 
+todo - provide examples including types, currying, etc. 
+
 ## Design Priorities
 
 * Type safety
@@ -61,3 +63,8 @@ This format is an emulation of Python's [PEP-3101](https://www.python.org/dev/pe
 * `sformat` - returns `Prelude.String` (ditto about IsString)
 * `tformat` - returns strict `Data.Text` (ditto)
 * `format` - equivalent to `putStrLn . unpack $ [tformat|blah|] a b c`
+
+## Internal Design
+
+* Format strings are parsed into a common representation using megaparsec
+* there is a function which recursively consumes parameters from a formatter, converting each successive one into a function argument until there aren't any left, in which case it appends any remaining literal text and returns the formatted value.
