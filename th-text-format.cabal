@@ -15,12 +15,14 @@ extra-source-files:   README.md
 
 common build-opts
   default-language:   Haskell2010
-  default-extensions: TemplateHaskellQuotes
-  ghc-options:        -Wall -Wcompat -Wincomplete-record-updates -Wincomplete-uni-patterns -Wredundant-constraints -O2 -flate-specialise -fspecialise-aggressively
+  default-extensions: TemplateHaskellQuotes, LambdaCase
+  ghc-options:        -Wall -Wcompat -Wincomplete-record-updates -Wincomplete-uni-patterns -Wredundant-constraints
 
 library
   import:               build-opts
   hs-source-dirs:       src
-  build-depends:        base, text, megaparsec, parser-combinators
+  build-depends:        base, text, megaparsec, parser-combinators, template-haskell, data-default, recursion-schemes
   exposed-modules:      Text.Format
+  other-modules:        Text.Format.Formatter, Text.Format.Parsers, Text.Format.Parsers.Common, Text.Format.Parsers.Python,
+                        Text.Format.Parsers.C, Text.Format.Quoters, Text.Format.Specifier
 
