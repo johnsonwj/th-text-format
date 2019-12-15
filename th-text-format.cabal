@@ -15,7 +15,7 @@ extra-source-files:   README.md
 
 common build-opts
   default-language:   Haskell2010
-  default-extensions: TemplateHaskellQuotes, LambdaCase
+  default-extensions: TemplateHaskellQuotes, LambdaCase, OverloadedStrings
   ghc-options:        -Wall -Wcompat -Wincomplete-record-updates -Wincomplete-uni-patterns -Wredundant-constraints
 
 library
@@ -23,6 +23,19 @@ library
   hs-source-dirs:       src
   build-depends:        base, text, megaparsec, parser-combinators, template-haskell, data-default, recursion-schemes
   exposed-modules:      Text.Format
-  other-modules:        Text.Format.Formatter, Text.Format.Parsers, Text.Format.Parsers.Common, Text.Format.Parsers.Python,
-                        Text.Format.Parsers.C, Text.Format.Quoters, Text.Format.Specifier
+                      , Text.Format.Formatter
+                      , Text.Format.Parsers
+                      , Text.Format.Parsers.Common
+                      , Text.Format.Parsers.C
+                      , Text.Format.Parsers.Python
+                      , Text.Format.Quoters
+                      , Text.Format.Specifier
 
+test-suite tests
+  import:               build-opts
+  type:                 exitcode-stdio-1.0
+  main-is:              Spec.hs
+  hs-source-dirs:       test
+  build-depends:        base, hspec, th-text-format, megaparsec, text
+  build-tool-depends:   hspec-discover:hspec-discover
+  other-modules:        CParserSpec
