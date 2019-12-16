@@ -61,9 +61,7 @@ isFloatingArg FloatingGenC {} = True
 isFloatingArg FloatingHexC {} = True
 isFloatingArg _ = False
 
-data PositiveSign = PositiveEmpty | PositivePlus | PositiveSpace deriving (Show, Eq)
-instance Default PositiveSign where
-    def = PositiveEmpty
+data PositiveSign = PositivePlus | PositiveSpace deriving (Show, Eq)
 
 data Capitalization = Upper | Lower deriving (Show, Eq) -- whether to capitalize "e", "inf", "x", etc.
 
